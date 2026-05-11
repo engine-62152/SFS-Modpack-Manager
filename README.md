@@ -1,6 +1,6 @@
 # SFS-Modpack-Manager
 
-![Static Badge](https://img.shields.io/badge/Thing)
+![Static Badge](https://img.shields.io/badge/Things)
 
 A tool for using SFS with mods.
 

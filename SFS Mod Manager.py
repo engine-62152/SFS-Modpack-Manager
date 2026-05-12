@@ -2,7 +2,7 @@
 
 # ========== Configs ========== #
 
-ver = '0.3.0' # Version number
+ver = '0.3.1' # Version number
 
 # ========== Modules ========== #
 
@@ -25,6 +25,7 @@ if not os.path.isdir(folder) == True: # Creating the folder for mod storage
     ModdedFolder = "/".join(ModdedJoint)
     if not os.path.isdir(ModdedFolder):
         os.mkdir(ModdedFolder)
+        shutil.copytree('C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods', ModdedFolder)
 else:
     if not os.path.isdir('C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods'):
         os.mkdir('C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods')

@@ -2,22 +2,25 @@
 
 # ========== Configs ========== #
 
+import shutil
+import os
+import subprocess
+import customtkinter
 ver = "0.3.1"  # Version number
 
 # ========== Modules ========== #
 
-import customtkinter, subprocess, os, shutil, pathlib
 
 # ========== Startup =========== #
 
-joint = os.path.expanduser("~"), "\Documents\SFS Mod Manager"
+joint = os.path.expanduser("~"), "\\Documents\\SFS Mod Manager"
 folder = "".join(joint)  # The mod manager folder
 dirprofiles = os.listdir(folder)
 dirprofiles.append("Vanilla")
 profiles = dirprofiles
 
 
-if not os.path.isdir(folder) == True:  # Creating the folder for mod storage
+if not os.path.isdir(folder):  # Creating the folder for mod storage
     os.mkdir(folder)
     if not os.path.isdir(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
@@ -44,7 +47,8 @@ else:
 # ========== Varibles ========== #
 
 option = (
-    "Modded"  # Which profile to launch from (profiles don't really exist at the moment)
+    # Which profile to launch from (profiles don't really exist at the moment)
+    "Modded"
 )
 
 # ========== Functions ========== #
@@ -100,7 +104,13 @@ def LoadBox():  # Shows a box with a loading message
     LoadingBox.label = customtkinter.CTkLabel(
         LoadingBox, text="Launching...", fg_color="transparent"
     )
-    LoadingBox.label.grid(row=1, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
+    LoadingBox.label.grid(
+        row=1,
+        column=0,
+        padx=0,
+        pady=0,
+        sticky="ew",
+        columnspan=2)
     LoadingBox.mainloop()
 
 

@@ -14,5 +14,5 @@ This version not recommended for use, as the profile script has been removed for
 
 
 # How to use
-After downloading the executable or the python script, run it. It will create a folder named SFS Mod Manager, which should contain a folder named 'Modded'. This folder contains the mods you were using. To create more profiles to launch from, just copy the 'Modded' folder and replace the mods inside for the ones you want in that profile.
+After downloading the executable or the python script, run it. It will create a folder named SFS Mod Manager, which should contain a folder named 'Modded'. This folder contains the mods you were using. To create more profiles to launch from, just copy the 'Modded' folder and replace the mods inside for the ones you want in that profile. This will change after the profile managment script is fixed.
 

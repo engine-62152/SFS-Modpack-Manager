@@ -2,6 +2,7 @@
 
 ![GitHub top language](https://img.shields.io/github/languages/top/engine-62152/SFS-Modpack-Manager)
 ![GitHub License](https://img.shields.io/github/license/engine-62152/SFS-Modpack-Manager?label=License)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/engine-62152/SFS-Modpack-Manager)
 
 
 **NOTE: This code has not been tested**

@@ -1,6 +1,6 @@
 # SFS-Modpack-Manager
 
-![Static Badge](https://img.shields.io/badge/Things)
+![GitHub top language](https://img.shields.io/github/languages/top/engine-62152/SFS-Modpack-Manager)
 <--
 I have no idea what this is.
 

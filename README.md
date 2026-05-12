@@ -4,7 +4,11 @@
 ![GitHub License](https://img.shields.io/github/license/engine-62152/SFS-Modpack-Manager?label=License)
 
 
+**NOTE: This code has not been tested**
+
+
 A tool for using SFS with mods.
 
 
 This version not recommended for use, as the profile script has been removed for this beta version.
+

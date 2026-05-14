@@ -5,7 +5,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/engine-62152/SFS-Modpack-Manager)
 
 
-**NOTE: This code has not been tested**
+**NOTE: This code has not been tested on other computers**
 
 
 A tool for using SFS with mods. (Windows only for now)

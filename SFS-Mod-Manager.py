@@ -6,10 +6,7 @@ import shutil
 import os
 import subprocess
 import customtkinter
-ver = "0.3.2"  # Version number
-
-# ========== Modules ========== #
-
+ver = "0.3.3"  # Version number
 
 # ========== Startup =========== #
 
@@ -46,15 +43,6 @@ if not os.path.isdir(ModdedFolder):
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",
         ModdedFolder,
     )
-
-if not os.path.isdir(
-    "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-):
-    os.mkdir(
-        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-    )
-
-# ========== Varibles ========== #
 
 option = (
     # Which profile to launch from (profiles don't really exist at the moment)

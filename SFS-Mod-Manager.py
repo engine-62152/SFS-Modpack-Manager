@@ -6,43 +6,53 @@ import shutil
 import os
 import subprocess
 import customtkinter
-ver = "0.3.1"  # Version number
+ver = "0.3.2"  # Version number
 
 # ========== Modules ========== #
 
 
 # ========== Startup =========== #
 
-joint = os.path.expanduser("~"), "\\Documents\\SFS Mod Manager"
+joint = os.path.expanduser("~"), "\Documents\SFS Mod Manager"
 folder = "".join(joint)  # The mod manager folder
+if not os.path.isdir(folder):  # Creating the folder for mod storage
+    os.mkdir(folder)
 dirprofiles = os.listdir(folder)
 dirprofiles.append("Vanilla")
 profiles = dirprofiles
 
+def WarnBox(title,message): # Shows a box with a warning
+    def button_event():
+        quit()
+    WarnBox = customtkinter.CTk()
+    WarnBox.title(title)
+    WarnBox.grid_columnconfigure((0, 1), weight=1)
+    WarnBox.label = customtkinter.CTkLabel(WarnBox, text=message, fg_color="transparent")
+    WarnBox.label.grid(row=1, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
+    WarnBox.button = customtkinter.CTkButton(WarnBox, text="Close", command=button_event)
+    WarnBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
+    WarnBox.mainloop()
 
-if not os.path.isdir(folder):  # Creating the folder for mod storage
-    os.mkdir(folder)
-    if not os.path.isdir(
+if not os.path.isdir(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
     ):
-        os.mkdir(
-            "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-        )
-    ModdedJoint = folder, "Modded"
-    ModdedFolder = "/".join(ModdedJoint)
-    if not os.path.isdir(ModdedFolder):
-        os.mkdir(ModdedFolder)
-        shutil.copytree(
-            "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",
-            ModdedFolder,
-        )
-else:
-    if not os.path.isdir(
+        WarnBox('Error',' SFS files are missing. Please launch SFS to fix. ')
+
+
+ModdedJoint = folder, "Modded"
+ModdedFolder = "/".join(ModdedJoint)
+if not os.path.isdir(ModdedFolder):
+    shutil.copytree(
+        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",
+        ModdedFolder,
+    )
+
+if not os.path.isdir(
+    "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
+):
+    os.mkdir(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-    ):
-        os.mkdir(
-            "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-        )
+    )
 
 # ========== Varibles ========== #
 
@@ -70,10 +80,13 @@ def ToVanilla():  # Works, but not finished
 
 def ToModded():
     profilefold = folder, option, "Mods"
-    profilefolder = "/".join(profilefold)
+    profilefolder2 = "/".join(profilefold)
     shutil.rmtree(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
     )
+    print(profilefolder2)
+    profilefolder = profilefolder2
+    print(profilefolder)
     shutil.copytree(
         profilefolder,
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",

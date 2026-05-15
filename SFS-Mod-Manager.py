@@ -6,20 +6,13 @@ import shutil
 import os
 import subprocess
 import customtkinter
-ver = "0.3.4"  # Version number
+ver = "0.3.5"  # Version number
 
 # ========== Startup =========== #
 
-joint = os.path.expanduser("~"), "\Documents\SFS Mod Manager"
-folder = "".join(joint)  # The mod manager folder
-if not os.path.isdir(folder):  # Creating the folder for mod storage
-    os.mkdir(folder)
-dirprofiles = os.listdir(folder)
-dirprofiles.append("Vanilla")
-profiles = dirprofiles
-
 def WarnBox(title,message): # Shows a box with a warning
     def button_event():
+        WarnBox.destroy
         quit()
     WarnBox = customtkinter.CTk()
     WarnBox.title(title)
@@ -29,6 +22,18 @@ def WarnBox(title,message): # Shows a box with a warning
     WarnBox.button = customtkinter.CTkButton(WarnBox, text="Close", command=button_event)
     WarnBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
     WarnBox.mainloop()
+
+if not os.name == 'n':
+    print(os.name)
+    WarnBox('Unsupported OS',' Your OS (detected as "'+ os.name +'") is unsupported. ')
+
+joint = os.path.expanduser("~"), "\Documents\SFS Mod Manager"
+folder = "".join(joint)  # The mod manager folder
+if not os.path.isdir(folder):  # Creating the folder for mod storage
+    os.mkdir(folder)
+dirprofiles = os.listdir(folder)
+dirprofiles.append("Vanilla")
+profiles = dirprofiles
 
 if not os.path.isdir(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"

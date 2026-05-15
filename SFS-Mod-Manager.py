@@ -23,7 +23,7 @@ def WarnBox(title,message): # Shows a box with a warning
     WarnBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
     WarnBox.mainloop()
 
-if not os.name == 'n':
+if not os.name == 'nt':
     print(os.name)
     WarnBox('Unsupported OS',' Your OS (detected as "'+ os.name +'") is unsupported. ')
 

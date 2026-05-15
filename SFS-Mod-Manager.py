@@ -65,7 +65,9 @@ def optionmenu_callback(choice):  # Dropdown menu
 
 
 def ToVanilla():  # FIX: Copy a clean copy instead just removing
-    print('Placeholder')
+    shutil.rmtree(
+        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
+    )
 
 
 def ToModded():

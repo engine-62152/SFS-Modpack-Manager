@@ -1,12 +1,12 @@
 # SFS Mod Mananger
-
+# NEED TO CHANGE TOVANILLA(), it seems to be broken.
 # ========== Configs ========== #
 
 import shutil
 import os
 import subprocess
 import customtkinter
-ver = "0.3.3"  # Version number
+ver = "0.3.4"  # Version number
 
 # ========== Startup =========== #
 
@@ -34,15 +34,22 @@ if not os.path.isdir(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
     ):
         WarnBox('Error',' SFS files are missing. Please launch SFS to fix. ')
+        profilefold = folder, 'Modded', "Mods"
+        profilefolder = "/".join(profilefold)
+        shutil.copytree(
+        profilefolder,
+          "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods")
 
 
-ModdedJoint = folder, "Modded"
+ModdedJoint = folder, "Modded/Mods"
 ModdedFolder = "/".join(ModdedJoint)
 if not os.path.isdir(ModdedFolder):
     shutil.copytree(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",
         ModdedFolder,
     )
+
+# ========== Varibles ========== #
 
 option = (
     # Which profile to launch from (profiles don't really exist at the moment)
@@ -54,27 +61,19 @@ option = (
 
 def optionmenu_callback(choice):  # Dropdown menu
     global option
-    if choice == "Vanilla":
-        option = "Vanilla"
-    else:
-        option = choice
+    option = choice
 
 
-def ToVanilla():  # Works, but not finished
-    shutil.rmtree(
-        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-    )
+def ToVanilla():  # FIX: Copy a clean copy instead just removing
+    print('Placeholder')
 
 
 def ToModded():
     profilefold = folder, option, "Mods"
-    profilefolder2 = "/".join(profilefold)
+    profilefolder = "/".join(profilefold)
     shutil.rmtree(
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
     )
-    print(profilefolder2)
-    profilefolder = profilefolder2
-    print(profilefolder)
     shutil.copytree(
         profilefolder,
         "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",

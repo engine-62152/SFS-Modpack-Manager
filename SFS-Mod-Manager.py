@@ -1,5 +1,4 @@
 # SFS Mod Mananger
-# NEED TO CHANGE TOVANILLA(), it seems to be broken.
 # ========== Configs ========== #
 
 import shutil

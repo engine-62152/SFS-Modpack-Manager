@@ -4,7 +4,6 @@
 
 import shutil
 import os
-import subprocess
 import customtkinter
 import webbrowser
 

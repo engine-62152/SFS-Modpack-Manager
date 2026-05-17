@@ -6,51 +6,69 @@ import shutil
 import os
 import subprocess
 import customtkinter
-ver = "0.3.5"  # Version number
+import webbrowser
+
+VER = "0.3.6"  # Version number
+
+os.chdir(os.path.abspath(os.path.dirname(__file__)))  # Fixes permission errors
 
 # ========== Startup =========== #
 
-def WarnBox(title,message): # Shows a box with a warning
+
+def WarnBox(title, message):  # Shows a box with a warning
     def button_event():
         WarnBox.destroy
         quit()
-    WarnBox = customtkinter.CTk()
+
+    WarnBox = customtkinter.CTkToplevel()
     WarnBox.title(title)
     WarnBox.grid_columnconfigure((0, 1), weight=1)
-    WarnBox.label = customtkinter.CTkLabel(WarnBox, text=message, fg_color="transparent")
+    WarnBox.label = customtkinter.CTkLabel(
+        WarnBox, text=message, fg_color="transparent"
+    )
     WarnBox.label.grid(row=1, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
-    WarnBox.button = customtkinter.CTkButton(WarnBox, text="Close", command=button_event)
+    WarnBox.button = customtkinter.CTkButton(
+        WarnBox, text="Close", command=button_event
+    )
     WarnBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
-    WarnBox.mainloop()
 
-if not os.name == 'nt':
-    print(os.name)
-    WarnBox('Unsupported OS',' Your OS (detected as "'+ os.name +'") is unsupported. ')
 
-joint = os.path.expanduser("~"), "\Documents\SFS Mod Manager"
-folder = "".join(joint)  # The mod manager folder
+if not os.path.exists("sfs_dir.txt") or os.path.getsize("sfs_dir.txt") == 0:
+    filename = customtkinter.filedialog.askdirectory(title="Open SFS Directory")
+    SFS_DIR = filename
+    with open("sfs_dir.txt", "w") as f:
+        f.write(filename)
+else:
+    with open("sfs_dir.txt", "r") as f:
+        SFS_DIR = f.read()
+
+# if not os.name == "nt":
+#     print(os.name)
+#     WarnBox(
+#         "Unsupported OS", ' Your OS (detected as "' + os.name + '") is unsupported. '
+#     )
+
+folder = "SFS Mod Manager"  # The mod manager folder
 if not os.path.isdir(folder):  # Creating the folder for mod storage
     os.mkdir(folder)
+    os.mkdir(f"{folder}/Modded")
+    os.mkdir(f"{folder}/Modded/Mods")
 dirprofiles = os.listdir(folder)
 dirprofiles.append("Vanilla")
 profiles = dirprofiles
 
-if not os.path.isdir(
-        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-    ):
-        WarnBox('Error',' SFS files are missing. Please launch SFS to fix. ')
-        profilefold = folder, 'Modded', "Mods"
-        profilefolder = "/".join(profilefold)
-        shutil.copytree(
+if not os.path.isdir(f"{SFS_DIR}/Mods"):
+    WarnBox("Error", " SFS files are missing. Please launch SFS to fix. ")
+    profilefolder = os.path.join(folder, "Modded", "Mods")
+    shutil.copytree(
         profilefolder,
-          "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods")
+        f"{SFS_DIR}/Mods",
+    )
 
-
-ModdedJoint = folder, "Modded/Mods"
-ModdedFolder = "/".join(ModdedJoint)
+ModdedFolder = os.path.join(folder, "Modded/Mods")
 if not os.path.isdir(ModdedFolder):
     shutil.copytree(
-        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",
+        f"{SFS_DIR}/Mods",
         ModdedFolder,
     )
 
@@ -69,35 +87,27 @@ def optionmenu_callback(choice):  # Dropdown menu
     option = choice
 
 
-def ToVanilla():  # FIX: Copy a clean copy instead just removing
-    shutil.rmtree(
-        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-    )
+def ToVanilla():  # FIXED
+    os.removedirs(f"{SFS_DIR}/Mods")
 
 
 def ToModded():
     profilefold = folder, option, "Mods"
     profilefolder = "/".join(profilefold)
-    shutil.rmtree(
-        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods"
-    )
+    shutil.rmtree(f"{SFS_DIR}/Mods")
     shutil.copytree(
         profilefolder,
-        "C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game/Mods",
+        f"{SFS_DIR}/Mods",
     )
 
 
 def launch():  # Launches the game
     if option == "Vanilla":
         ToVanilla()
-        subprocess.Popen(
-            ["C:/Program Files (x86)/Steam/steam.exe", "-applaunch", "1718870"]
-        )
+        webbrowser.open("steam://rungameid/1718870")
     else:
         ToModded()
-        subprocess.Popen(
-            ["C:/Program Files (x86)/Steam/steam.exe", "-applaunch", "1718870"]
-        )
+        webbrowser.open("steam://rungameid/1718870")
 
 
 #    LoadBox()
@@ -105,32 +115,23 @@ def launch():  # Launches the game
 
 
 def LoadBox():  # Shows a box with a loading message
-    LoadingBox = customtkinter.CTk()
+    LoadingBox = customtkinter.CTkToplevel()
     LoadingBox.title("Loading...")
     LoadingBox.grid_columnconfigure((0, 1), weight=1)
     LoadingBox.label = customtkinter.CTkLabel(
         LoadingBox, text="Launching...", fg_color="transparent"
     )
-    LoadingBox.label.grid(
-        row=1,
-        column=0,
-        padx=0,
-        pady=0,
-        sticky="ew",
-        columnspan=2)
-    LoadingBox.mainloop()
+    LoadingBox.label.grid(row=1, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
 
 
 # ========== GUI code ========== #
-
-app = customtkinter.CTk()
 
 
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("SFS Mod Manager | " + ver)
+        self.title("SFS Mod Manager | " + VER)
         self.geometry("540x270")
         self.grid_columnconfigure((0), weight=1)
         self.grid_rowconfigure((2, 3), weight=1)

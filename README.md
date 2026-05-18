@@ -5,13 +5,10 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/engine-62152/SFS-Modpack-Manager)
 
 
-**NOTE: This code has not been tested on other computers**
+A tool for using SFS with mods. 
 
 
-A tool for using SFS with mods. (Windows only for now)
-
-
-This version not recommended for use, as the profile script has been removed for this beta version.
+This version is not recommended for use, as the profile script has been removed for this beta version.
 
 
 # How to use

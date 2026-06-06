@@ -12,5 +12,9 @@ This version is not recommended for use, as the profile script has been removed 
 
 
 # How to use
-After downloading the executable or the python script, run it. It will create a folder named SFS Mod Manager, which should contain a folder named 'Modded'. This folder contains the mods you were using. To create more profiles to launch from, just copy the 'Modded' folder and replace the mods inside for the ones you want in that profile. This will change after the profile managment script is fixed.
 
+
+## Windows
+
+
+After downloading the executable or the python script, move the file to the location where you want it to be installed, then run it. Enter the location of the SFS folder _e.g. C:/Program Files (x86)/Steam/steamapps/common/Spaceflight Simulator/Spaceflight Simulator Game). It will create a folder named SFS Mod Manager in the folder that contains the scipt, which should contain a folder named 'Modded'. This folder contains the mods you were using before. To create more profiles to launch from, just copy the 'Modded' folder and replace the mods inside for the ones you want in that profile. This will change after the profile managment script is fixed.

@@ -13,13 +13,11 @@ try:
 except ImportError:
     subprocess.run([sys.executable, "-m", "pip", "install", "customtkinter"])
 
-
-VER = "0.3.9"  # Version number
+VER = "0.3.10"  # Version number
 
 os.chdir(os.path.abspath(os.path.dirname(__file__)))  # Fixes permission errors
 
 # ========== Startup =========== #
-
 
 def WarnBox(title, message):  # Shows a box with a warning
     def button_event():
@@ -41,32 +39,26 @@ if not os.path.isdir(folder):  # Creating the folder for mod storage
     os.mkdir(f"{folder}/Modded/Mods")
 dirprofiles = os.listdir(folder)
 dirprofiles.append("Vanilla")
-dirprofiles.remove("sfs_dir.txt")
 profiles = dirprofiles
 
 if (not os.path.exists(f"{folder}/sfs_dir.txt") or os.path.getsize(f"{folder}/sfs_dir.txt") == 0):
-    filename = customtkinter.filedialog.askdirectory(title="Open SFS Directory")
+    filename = customtkinter.filedialog.askdirectory(title="Open SFS Directory (...\Spaceflight Simulator\Spaceflight Simulator Game)")
     SFS_DIR = filename
     with open(f"{folder}/sfs_dir.txt", "w") as f:
         f.write(filename)
 else:
     with open(f"{folder}/sfs_dir.txt", "r") as f:
         SFS_DIR = f.read()
+profiles.remove("sfs_dir.txt")
 
 if not os.path.isdir(f"{SFS_DIR}/Mods"):
     WarnBox("Error", " SFS files are missing. Please launch SFS to fix. ")
     profilefolder = os.path.join(folder, "Modded", "Mods")
-    shutil.copytree(
-        profilefolder,
-        f"{SFS_DIR}/Mods",
-    )
+    shutil.copytree(profilefolder,f"{SFS_DIR}/Mods",)
 
 ModdedFolder = os.path.join(folder, "Modded/Mods")
 if not os.path.isdir(ModdedFolder):
-    shutil.copytree(
-        f"{SFS_DIR}/Mods",
-        ModdedFolder,
-    )
+    shutil.copytree(f"{SFS_DIR}/Mods",ModdedFolder,)
 
 # ========== Varibles ========== #
 
@@ -75,22 +67,18 @@ option = "Modded"
 
 # ========== Functions ========== #
 
-
 def optionmenu_callback(choice):  # Dropdown menu
     global option
     option = choice
 
-
 def ToVanilla():  # FIXED
     os.removedirs(f"{SFS_DIR}/Mods")
-
 
 def ToModded():
     profilefold = folder, option, "Mods"
     profilefolder = "/".join(profilefold)
     shutil.rmtree(f"{SFS_DIR}/Mods")
     shutil.copytree(profilefolder,f"{SFS_DIR}/Mods",)
-
 
 def launch():  # Launches the game
     if option == "Vanilla":
@@ -100,9 +88,7 @@ def launch():  # Launches the game
         ToModded()
         webbrowser.open("steam://rungameid/1718870")
 
-
 # ========== GUI code ========== #
-
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -120,7 +106,6 @@ class App(customtkinter.CTk):
 
     def button_callback(self):
         launch()
-
 
 app = App()
 app.mainloop()

@@ -13,7 +13,7 @@ try:
 except ImportError:
     subprocess.run([sys.executable, "-m", "pip", "install", "customtkinter"])
 
-VER = "0.3.10"  # Version number
+VER = "0.3.11"  # Version number
 
 os.chdir(os.path.abspath(os.path.dirname(__file__)))  # Fixes permission errors
 
@@ -49,7 +49,7 @@ if (not os.path.exists(f"{folder}/sfs_dir.txt") or os.path.getsize(f"{folder}/sf
 else:
     with open(f"{folder}/sfs_dir.txt", "r") as f:
         SFS_DIR = f.read()
-profiles.remove("sfs_dir.txt")
+        profiles.remove("sfs_dir.txt")
 
 if not os.path.isdir(f"{SFS_DIR}/Mods"):
     WarnBox("Error", " SFS files are missing. Please launch SFS to fix. ")

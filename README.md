@@ -3,6 +3,8 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/engine-62152/SFS-Modpack-Manager)
 ![GitHub License](https://img.shields.io/github/license/engine-62152/SFS-Modpack-Manager?label=License)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/engine-62152/SFS-Modpack-Manager)
+![GitHub last commit](https://img.shields.io/github/last-commit/engine-62152/SFS-Modpack-Manager)
+
 
 
 A tool for using SFS with mods. 

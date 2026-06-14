@@ -13,7 +13,7 @@ try:
 except ImportError:
     subprocess.run([sys.executable, "-m", "pip", "install", "customtkinter"])
 
-VER = "0.3.11"  # Version number
+VER = "Beta 0.3.12"  # Version number
 
 os.chdir(os.path.abspath(os.path.dirname(__file__)))  # Fixes permission errors
 
@@ -65,6 +65,8 @@ if not os.path.isdir(ModdedFolder):
 # the profile to launch from
 option = "Modded"
 
+dictionary = os.getcwd()
+
 # ========== Functions ========== #
 
 def optionmenu_callback(choice):  # Dropdown menu
@@ -76,6 +78,7 @@ def ToVanilla():  # FIXED
 
 def ToModded():
     profilefold = folder, option, "Mods"
+    global profilefolder
     profilefolder = "/".join(profilefold)
     shutil.rmtree(f"{SFS_DIR}/Mods")
     shutil.copytree(profilefolder,f"{SFS_DIR}/Mods",)
@@ -88,6 +91,11 @@ def launch():  # Launches the game
         ToModded()
         webbrowser.open("steam://rungameid/1718870")
 
+def option_open():
+    profilefold = dictionary, folder, option, "Mods"
+    profilefolder = r"/".join(profilefold)
+    os.startfile(profilefolder)
+
 # ========== GUI code ========== #
 
 class App(customtkinter.CTk):
@@ -95,17 +103,24 @@ class App(customtkinter.CTk):
         super().__init__()
         self.title("SFS Mod Manager | " + VER)
         self.geometry("540x270")
-        self.grid_columnconfigure((0), weight=1)
-        self.grid_rowconfigure((2, 3), weight=1)
-        self.button = customtkinter.CTkButton(self, text="Launch", command=self.button_callback)
-        self.button.grid(row=4, column=0, padx=20, pady=20, sticky="ew")
-        self.label = customtkinter.CTkLabel(self, text="Placeholder", fg_color="transparent")
-        self.label.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
+        self.grid_columnconfigure((1), weight=1)
+        self.grid_rowconfigure((2), weight=1)
+        self.button = customtkinter.CTkButton(self, text="Launch", command=self.button_launch)
+        self.button.grid(row=3, column=1, padx=10, pady=20, sticky="ew")
+        self.button = customtkinter.CTkButton(self, text="Open", command=self.button_open)
+        self.button.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
+        self.button = customtkinter.CTkButton(self, text="Manage", command=self.button_open)
+        self.button.grid(row=3, column=2, padx=20, pady=20, sticky="ew")
+        self.label = customtkinter.CTkLabel(self, text="SFS Mod Manager", fg_color="transparent")
+        self.label.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
         self.optionmenu = customtkinter.CTkOptionMenu(self, values=profiles, command=optionmenu_callback)
-        self.optionmenu.grid(row=1, column=0, padx=0, pady=0)
+        self.optionmenu.grid(row=1, column=1, padx=0, pady=0)
 
-    def button_callback(self):
+    def button_launch(self):
         launch()
+
+    def button_open(self):
+        option_open()
 
 app = App()
 app.mainloop()

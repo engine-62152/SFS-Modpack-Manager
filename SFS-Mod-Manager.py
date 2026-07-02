@@ -2,11 +2,7 @@
 # Credits: Roshan, Engine
 # ========== Configs ========== #
 
-import shutil
-import os
-import webbrowser
-import subprocess
-import sys
+import shutil, os, webbrowser, subprocess, sys
 
 try:
     import customtkinter

@@ -109,7 +109,7 @@ class App(customtkinter.CTk):
         self.button.grid(row=3, column=1, padx=10, pady=20, sticky="ew")
         self.button = customtkinter.CTkButton(self, text="Open", command=self.button_open)
         self.button.grid(row=3, column=0, padx=20, pady=20, sticky="ew")
-        self.button = customtkinter.CTkButton(self, text="Manage", command=self.button_open)
+        self.button = customtkinter.CTkButton(self, text="Manage", command=self.button_manage)
         self.button.grid(row=3, column=2, padx=20, pady=20, sticky="ew")
         self.label = customtkinter.CTkLabel(self, text="SFS Mod Manager", fg_color="transparent")
         self.label.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
@@ -120,6 +120,9 @@ class App(customtkinter.CTk):
         launch()
 
     def button_open(self):
+        option_open()
+
+    def button_manage(self):
         option_open()
 
 app = App()

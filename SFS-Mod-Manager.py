@@ -96,6 +96,25 @@ def option_open():
     profilefolder = r"/".join(profilefold)
     os.startfile(profilefolder)
 
+class ProfileFrame(customtkinter.CTkScrollableFrame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self.label = customtkinter.CTkLabel(self)
+        self.label.grid(row=0, column=0, padx=20)
+
+def ManageBox():  # Placeholder
+    def button_event():
+        ManageBox.destroy
+        quit()
+
+    ManageBox = customtkinter.CTkToplevel()
+    ManageBox.title('Manage Profiles')
+    ManageBox.grid_columnconfigure((0, 1), weight=1)
+    ManageBox.button = customtkinter.CTkButton(ManageBox, text="Close", command=button_event)
+    ManageBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
+    ManageBox.frame = ProfileFrame(master=self, width=300, height=200, corner_radius=0, fg_color="transparent")
+    ManageBox.frame.grid(row=0, column=0, sticky="nsew")
+
 # ========== GUI code ========== #
 
 class App(customtkinter.CTk):
@@ -123,7 +142,7 @@ class App(customtkinter.CTk):
         option_open()
 
     def button_manage(self):
-        option_open()
+        ManageBox()
 
 app = App()
 app.mainloop()

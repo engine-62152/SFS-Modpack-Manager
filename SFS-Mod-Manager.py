@@ -112,7 +112,7 @@ def ManageBox():  # Placeholder
     ManageBox.grid_columnconfigure((0, 1), weight=1)
     ManageBox.button = customtkinter.CTkButton(ManageBox, text="Close", command=button_event)
     ManageBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
-    ManageBox.frame = ProfileFrame(master=self, width=300, height=200, corner_radius=0, fg_color="transparent")
+    ManageBox.frame = ProfileFrame(master=ManageBox, width=300, height=200, corner_radius=0, fg_color="transparent")
     ManageBox.frame.grid(row=0, column=0, sticky="nsew")
 
 # ========== GUI code ========== #

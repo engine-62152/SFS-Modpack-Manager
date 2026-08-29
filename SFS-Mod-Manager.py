@@ -2,16 +2,16 @@
 # Credits: Roshan, Engine
 # ========== Configs ========== #
 
-import shutil
 import os
-import webbrowser
+import shutil
 import subprocess
 import sys
+import webbrowser
 
 try:
     import customtkinter
 except ImportError:
-    subprocess.run([sys.executable, "-m", "pip", "install", "customtkinter"])
+    subprocess.run([sys.executable, "-m", "pip", "install", "customtkinter"], check=False)
 
 VER = "Beta 0.3.12"  # Version number
 
@@ -22,7 +22,7 @@ os.chdir(os.path.abspath(os.path.dirname(__file__)))  # Fixes permission errors
 def WarnBox(title, message):  # Shows a box with a warning
     def button_event():
         WarnBox.destroy
-        quit()
+        sys.exit()
 
     WarnBox = customtkinter.CTkToplevel()
     WarnBox.title(title)
@@ -105,14 +105,14 @@ class ProfileFrame(customtkinter.CTkScrollableFrame):
 def ManageBox():  # Placeholder
     def button_event():
         ManageBox.destroy
-        quit()
+        sys.exit()
 
     ManageBox = customtkinter.CTkToplevel()
     ManageBox.title('Manage Profiles')
     ManageBox.grid_columnconfigure((0, 1), weight=1)
     ManageBox.button = customtkinter.CTkButton(ManageBox, text="Close", command=button_event)
     ManageBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
-    ManageBox.frame = ProfileFrame(master=ManageBox, width=300, height=200, corner_radius=0, fg_color="transparent")
+    ManageBox.frame = ProfileFrame(width=300, height=200, corner_radius=0, fg_color="transparent")
     ManageBox.frame.grid(row=0, column=0, sticky="nsew")
 
 # ========== GUI code ========== #

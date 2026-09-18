@@ -103,17 +103,17 @@ class ProfileFrame(customtkinter.CTkScrollableFrame):
         self.label.grid(row=0, column=0, padx=20)
 
 def ManageBox():  # Placeholder
-    def button_event():
+    def b_event():
         ManageBox.destroy
         sys.exit()
 
     ManageBox = customtkinter.CTkToplevel()
-    ManageBox.title('Manage Profiles')
+    ManageBox.title("Manage")
     ManageBox.grid_columnconfigure((0, 1), weight=1)
-    ManageBox.button = customtkinter.CTkButton(ManageBox, text="Close", command=button_event)
+    ManageBox.label = customtkinter.CTkLabel(ManageBox, text="Placeholder", fg_color="transparent")
+    ManageBox.label.grid(row=1, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
+    ManageBox.button = customtkinter.CTkButton(ManageBox, text="Close", command=b_event)
     ManageBox.button.grid(row=2, column=0, padx=0, pady=0, sticky="ew", columnspan=2)
-    ManageBox.frame = ProfileFrame(width=300, height=200, corner_radius=0, fg_color="transparent")
-    ManageBox.frame.grid(row=0, column=0, sticky="nsew")
 
 # ========== GUI code ========== #
 

@@ -9,7 +9,7 @@
 
 A tool for using SFS with mods.                                      
 
-I don't have much time to work on this right now due to schoolwork.                              
+I don't have much time to work on this right now due to work.                              
 
 Link to future rewrite: ![MSMU](https://github.com/engine-62152/MSMU)
 

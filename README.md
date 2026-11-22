@@ -9,9 +9,7 @@
 
 A tool for using SFS with mods.                                      
 
-I don't have much time to work on this right now due to work.                              
-
-Link to future rewrite: ![MSMU](https://github.com/engine-62152/MSMU)
+I am rewriting it in PyQt : ![MSMU](https://github.com/engine-62152/MSMU)
 
 This version is not recommended for use, as the profile script has been removed for this beta version.
 
